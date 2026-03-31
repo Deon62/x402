@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workspace | arelis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="workspace-page">
+    <div class="workspace-shell">
+      <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <div class="workspace-sidebar-brand">
+          <a class="brand" href="index.html">arelis</a>
+          <p class="workspace-sidebar-meta">Workspace</p>
+        </div>
+        <nav class="workspace-nav">
+          <a class="workspace-nav-item is-active" href="#" data-view="command">Command</a>
+          <a class="workspace-nav-item" href="agents.html">Agents</a>
+          <a class="workspace-nav-item" href="#" data-view="tasks">Tasks</a>
+          <a class="workspace-nav-item" href="wallet.html">Wallet</a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+          <a class="workspace-home-link" href="index.html">← Back to home</a>
+        </div>
+      </aside>
+      <main class="workspace-main" id="workspace-main">
+        <h1 class="workspace-main-header" id="workspace-title">Command</h1>
+        <p class="workspace-main-hint" id="workspace-hint"></p>
+        <div class="workspace-panel workspace-panel--flush" id="workspace-panel"></div>
+      </main>
+    </div>
+
+    <template id="command-chat-template">
+      <div class="command-chat">
+        <div class="command-chat-log" role="log" aria-live="polite">
+          <div class="command-msg command-msg--assistant">
+            <span class="command-msg-role">arelis</span>
+            <p class="command-msg-body">
+              Ready. Describe a task or ask to hire an agent from the marketplace.
+            </p>
+          </div>
+          <div class="command-msg command-msg--user">
+            <p class="command-msg-body">
+              Research top three competitors and draft a one-page brief.
+            </p>
+          </div>
+          <div class="command-msg command-msg--assistant">
+            <span class="command-msg-role">arelis</span>
+            <p class="command-msg-body">
+              Queuing a research agent run. Paid calls will show in Tasks and Wallet when
+              complete.
+            </p>
+          </div>
+        </div>
+        <div class="command-chat-composer">
+          <input
+            type="file"
+            id="command-attach-input"
+            class="visually-hidden"
+            multiple
+            tabindex="-1"
+          />
+          <button
+            type="button"
+            class="command-icon-btn"
+            id="command-attach-btn"
+            aria-label="Attach file"
+            title="Attach"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M17.5 10.5V7A5.5 5.5 0 0 0 7 7v8.5a4 4 0 1 0 8 0V9a2.5 2.5 0 0 0-5 0v7"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <label class="visually-hidden" for="command-input">Message</label>
+          <textarea
+            id="command-input"
+            class="command-input"
+            rows="1"
+            placeholder="Message…"
+            autocomplete="off"
+          ></textarea>
+          <button
+            type="button"
+            class="command-icon-btn"
+            id="command-mic-btn"
+            aria-label="Voice command"
+            title="Voice input"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M12 14c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v5c0 1.66 1.34 3 3 3zm5-3c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V22h2v-4.08c3.39-.49 6-3.39 6-6.92h-2z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <button type="button" class="command-send-btn" id="command-send-btn" aria-label="Send" title="Send">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2 .01 7z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <script>
+      (function () {
+        const titles = {
+          command: "Command",
+          tasks: "Tasks",
+          wallet: "Wallet",
+        };
+        const hints = {
+          command:
+            "Run marketplace flows and agent hires from a single control surface.",
+          wallet: "Balances, spend limits, and Stellar x402 settlement — coming next.",
+        };
+        const tpl = document.getElementById("command-chat-template");
+        const commandChatHtml = tpl ? tpl.innerHTML : "";
+
+        const panels = {
+          wallet:
+            "Wallet placeholder — USDC on Stellar, policy caps, and transaction history.",
+        };
+
+        const tasksPanelHtml =
+          '<div class="tasks-panel-inner">' +
+          '<p class="task-table-note">Tasks can be started from this workspace or from your own apps, schedulers, and APIs—agents receive jobs the same way.</p>' +
+          '<div class="task-table-scroll">' +
+          '<table class="task-table">' +
+          "<thead><tr><th>Task</th><th>Agent</th><th>Status</th><th>Source</th><th class=\"task-th-spend\">Spend</th></tr></thead><tbody>" +
+          "<tr><td>Summarize Q1 risk factors</td><td>Report agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Command</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Fix JWT refresh race in API</td><td>Coding agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">REST API</td><td class=\"task-spend\">0.12 USDC</td></tr>" +
+          "<tr><td>Scrape 5 competitor pricing pages</td><td>Research agent</td><td><span class=\"task-status task-status--run\">Running</span></td><td class=\"task-source\">Cron / nightly</td><td class=\"task-spend task-spend--pending\">—</td></tr>" +
+          "<tr><td>Draft investor update email</td><td>Copy agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Mobile link</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Export brief as PDF</td><td>Report agent</td><td><span class=\"task-status task-status--fail\">Failed</span></td><td class=\"task-source\">SDK (Node)</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Lint + suggest refactors for checkout module</td><td>Code review agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Webhook</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Deep research: EU compliance for launch</td><td>Research agent</td><td><span class=\"task-status task-status--queued\">Queued</span></td><td class=\"task-source\">Partner integration</td><td class=\"task-spend task-spend--pending\">—</td></tr>" +
+          "<tr><td>Enrich 40 signups with firmographics</td><td>Lead enrichment agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Batch CSV upload</td><td class=\"task-spend\">2.00 USDC</td></tr>" +
+          "</tbody></table></div></div>";
+
+        const titleEl = document.getElementById("workspace-title");
+        const hintEl = document.getElementById("workspace-hint");
+        const panelEl = document.getElementById("workspace-panel");
+
+        function bindCommandChat(root) {
+          if (!root) return;
+          var attachInput = root.querySelector("#command-attach-input");
+          var attachBtn = root.querySelector("#command-attach-btn");
+          var micBtn = root.querySelector("#command-mic-btn");
+          var sendBtn = root.querySelector("#command-send-btn");
+          var input = root.querySelector("#command-input");
+          var log = root.querySelector(".command-chat-log");
+
+          if (attachBtn && attachInput) {
+            attachBtn.addEventListener("click", function () {
+              attachInput.click();
+            });
+            attachInput.addEventListener("change", function () {
+              if (attachInput.files && attachInput.files.length) {
+                attachBtn.setAttribute("title", attachInput.files.length + " file(s) selected");
+              }
+            });
+          }
+
+          if (micBtn) {
+            micBtn.addEventListener("click", function () {
+              micBtn.classList.toggle("is-listening");
+              micBtn.setAttribute(
+                "aria-pressed",
+                micBtn.classList.contains("is-listening") ? "true" : "false"
+              );
+            });
+          }
+
+          function sendMessage() {
+            if (!input || !log || !input.value.trim()) return;
+            var wrapper = document.createElement("div");
+            wrapper.className = "command-msg command-msg--user";
+            wrapper.innerHTML =
+              '<p class="command-msg-body"></p>';
+            wrapper.querySelector(".command-msg-body").textContent = input.value.trim();
+            log.appendChild(wrapper);
+            input.value = "";
+            input.style.height = "";
+            log.scrollTop = log.scrollHeight;
+          }
+
+          if (sendBtn) sendBtn.addEventListener("click", sendMessage);
+          if (input) {
+            input.addEventListener("keydown", function (e) {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+              }
+            });
+            input.addEventListener("input", function () {
+              input.style.height = "auto";
+              input.style.height = Math.min(input.scrollHeight, 120) + "px";
+            });
+          }
+        }
+
+        const mainEl = document.getElementById("workspace-main");
+
+        function activateView(view, navEl) {
+          document.querySelectorAll(".workspace-nav-item").forEach(function (a) {
+            a.classList.remove("is-active");
+          });
+          if (navEl) navEl.classList.add("is-active");
+          titleEl.textContent = titles[view] || view;
+          hintEl.textContent = hints[view] || "";
+          if (view === "command") {
+            if (mainEl) {
+              mainEl.classList.add("workspace-main--command");
+            }
+            titleEl.setAttribute("hidden", "");
+            hintEl.setAttribute("hidden", "");
+            panelEl.className = "workspace-panel workspace-panel--flush";
+            panelEl.innerHTML = commandChatHtml;
+            bindCommandChat(panelEl);
+          } else if (view === "tasks") {
+            if (mainEl) {
+              mainEl.classList.remove("workspace-main--command");
+            }
+            titleEl.setAttribute("hidden", "");
+            hintEl.setAttribute("hidden", "");
+            panelEl.className = "workspace-panel";
+            panelEl.innerHTML = tasksPanelHtml;
+          } else {
+            if (mainEl) {
+              mainEl.classList.remove("workspace-main--command");
+            }
+            titleEl.removeAttribute("hidden");
+            hintEl.removeAttribute("hidden");
+            panelEl.className = "workspace-panel";
+            panelEl.innerHTML =
+              '<p class="workspace-panel-text">' + (panels[view] || "") + "</p>";
+          }
+        }
+
+        activateView("command", document.querySelector('.workspace-nav-item[data-view="command"]'));
+
+        document.querySelectorAll(".workspace-nav-item[data-view]").forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const view = link.getAttribute("data-view");
+            if (!view) return;
+            activateView(view, link);
+          });
+        });
+
+        (function syncHash() {
+          var h = (location.hash || "").replace(/^#/, "");
+          if (!h) return;
+          var el = document.querySelector('.workspace-nav-item[data-view="' + h + '"]');
+          if (el) activateView(h, el);
+        })();
+      })();
+    </script>
+  </body>
+</html>

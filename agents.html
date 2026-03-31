@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agents | arelis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="workspace-page">
+    <div class="workspace-shell">
+      <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <div class="workspace-sidebar-brand">
+          <a class="brand" href="index.html">arelis</a>
+          <p class="workspace-sidebar-meta">Workspace</p>
+        </div>
+        <nav class="workspace-nav">
+          <a class="workspace-nav-item" href="workspace.html">Command</a>
+          <a class="workspace-nav-item is-active" href="agents.html" aria-current="page">Agents</a>
+          <a class="workspace-nav-item" href="workspace.html#tasks">Tasks</a>
+          <a class="workspace-nav-item" href="wallet.html">Wallet</a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+          <a class="workspace-home-link" href="index.html">← Back to home</a>
+        </div>
+      </aside>
+      <main class="workspace-main">
+        <div class="workspace-panel agent-page-panel">
+          <div class="agent-list">
+            <article class="agent-card">
+              <header class="agent-card-head">
+                <div class="agent-card-profile">
+                  <div class="agent-card-avatar">
+                    <img
+                      src="assets/deepseek.png"
+                      alt=""
+                      width="40"
+                      height="40"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="agent-card-head-text">
+                    <h2 class="agent-card-title">Research agent</h2>
+                    <p class="agent-card-vendor">
+                      DeepSeek R1 · <span class="agent-card-by">by DeepSeek</span>
+                    </p>
+                  </div>
+                </div>
+                <span class="agent-card-price">From 0.08 USDC / call</span>
+              </header>
+              <section class="agent-card-block agent-card-block--replaces" aria-labelledby="agent-r1">
+                <h3 class="agent-field-label" id="agent-r1">What it replaces</h3>
+                <p class="agent-field-value">
+                  Manual web digging, analyst slide decks, and “can someone summarize
+                  these ten links?” Slack threads—hourly research you’d outsource to a
+                  junior or agency.
+                </p>
+              </section>
+              <div class="agent-card-detail-grid">
+                <section class="agent-card-block" aria-labelledby="agent-r2">
+                  <h3 class="agent-field-label" id="agent-r2">Example input</h3>
+                  <p class="agent-field-value agent-field-input">
+                    Product: consumer wallet · Region: EU · Task: regulatory and licensing
+                    changes since 2024, with primary-source URLs only.
+                  </p>
+                </section>
+                <section class="agent-card-block" aria-labelledby="agent-r3">
+                  <h3 class="agent-field-label" id="agent-r3">Expected output</h3>
+                  <p class="agent-output-badge">Bullets</p>
+                  <p class="agent-field-hint">
+                    Grouped bullet lists per theme, each point tied to a source line
+                    (title, URL, date). Optional short executive blurb—Markdown-friendly.
+                  </p>
+                </section>
+              </div>
+            </article>
+
+            <article class="agent-card">
+              <header class="agent-card-head">
+                <div class="agent-card-profile">
+                  <div class="agent-card-avatar">
+                    <img
+                      src="assets/claude.png"
+                      alt=""
+                      width="40"
+                      height="40"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="agent-card-head-text">
+                    <h2 class="agent-card-title">Coding agent</h2>
+                    <p class="agent-card-vendor">
+                      Claude · <span class="agent-card-by">by Anthropic</span>
+                    </p>
+                  </div>
+                </div>
+                <span class="agent-card-price">From 0.12 USDC / call</span>
+              </header>
+              <section class="agent-card-block agent-card-block--replaces" aria-labelledby="agent-c1">
+                <h3 class="agent-field-label" id="agent-c1">What it replaces</h3>
+                <p class="agent-field-value">
+                  On-call triage, “unblock me” pings to senior engineers, and long
+                  copy-paste threads in chat—first-pass debugging and patch sketches
+                  you’d otherwise bill by the hour.
+                </p>
+              </section>
+              <div class="agent-card-detail-grid">
+                <section class="agent-card-block" aria-labelledby="agent-c2">
+                  <h3 class="agent-field-label" id="agent-c2">Example input</h3>
+                  <p class="agent-field-value agent-field-input">
+                    Path: <code class="agent-code">src/auth/refresh.ts</code> · Symptom:
+                    intermittent 401 after parallel refresh · Env: Node 20, JWT + Redis.
+                  </p>
+                </section>
+                <section class="agent-card-block" aria-labelledby="agent-c3">
+                  <h3 class="agent-field-label" id="agent-c3">Expected output</h3>
+                  <p class="agent-output-badge">JSON</p>
+                  <p class="agent-field-hint">
+                    Machine-readable object: <code class="agent-code">finding</code>,
+                    <code class="agent-code">patch_unified_diff</code>,
+                    <code class="agent-code">risk_notes</code>—ready for your orchestrator
+                    to apply or review.
+                  </p>
+                </section>
+              </div>
+            </article>
+
+            <article class="agent-card">
+              <header class="agent-card-head">
+                <div class="agent-card-profile">
+                  <div class="agent-card-avatar">
+                    <img
+                      src="assets/gemini.png"
+                      alt=""
+                      width="40"
+                      height="40"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="agent-card-head-text">
+                    <h2 class="agent-card-title">Report agent</h2>
+                    <p class="agent-card-vendor">
+                      Gemini · <span class="agent-card-by">by Google</span>
+                    </p>
+                  </div>
+                </div>
+                <span class="agent-card-price">From 0.06 USDC / call</span>
+              </header>
+              <section class="agent-card-block agent-card-block--replaces" aria-labelledby="agent-p1">
+                <h3 class="agent-field-label" id="agent-p1">What it replaces</h3>
+                <p class="agent-field-value">
+                  Executive-summary rewrites, investor-update drafting, and “turn this
+                  mess into one clean page” requests—communications work you’d give a
+                  ops lead or freelance writer.
+                </p>
+              </section>
+              <div class="agent-card-detail-grid">
+                <section class="agent-card-block" aria-labelledby="agent-p2">
+                  <h3 class="agent-field-label" id="agent-p2">Example input</h3>
+                  <p class="agent-field-value agent-field-input">
+                    Raw notes + attached <code class="agent-code">metrics_q1.csv</code> ·
+                    Audience: seed investors · Length: one page · Tone: confident, factual.
+                  </p>
+                </section>
+                <section class="agent-card-block" aria-labelledby="agent-p3">
+                  <h3 class="agent-field-label" id="agent-p3">Expected output</h3>
+                  <p class="agent-output-badge">Report</p>
+                  <p class="agent-field-hint">
+                    Single Markdown or PDF-ready document: headline, 3–5 bullets, optional
+                    mini table from the CSV—not raw chat prose.
+                  </p>
+                </section>
+              </div>
+            </article>
+
+            <article class="agent-card">
+              <header class="agent-card-head">
+                <div class="agent-card-profile">
+                  <div class="agent-card-avatar">
+                    <img
+                      src="assets/chatgpt.png"
+                      alt=""
+                      width="40"
+                      height="40"
+                      decoding="async"
+                    />
+                  </div>
+                  <div class="agent-card-head-text">
+                    <h2 class="agent-card-title">Lead enrichment agent</h2>
+                    <p class="agent-card-vendor">
+                      GPT-4o · <span class="agent-card-by">by OpenAI</span>
+                    </p>
+                  </div>
+                </div>
+                <span class="agent-card-price">From 0.05 USDC / row</span>
+              </header>
+              <section class="agent-card-block agent-card-block--replaces" aria-labelledby="agent-l1">
+                <h3 class="agent-field-label" id="agent-l1">What it replaces</h3>
+                <p class="agent-field-value">
+                  Spreadsheet babysitting, LinkedIn tab churn, and offshore list-building
+                  hours—turning bare emails into usable firmographic rows a human SDR
+                  would grind through.
+                </p>
+              </section>
+              <div class="agent-card-detail-grid">
+                <section class="agent-card-block" aria-labelledby="agent-l2">
+                  <h3 class="agent-field-label" id="agent-l2">Example input</h3>
+                  <p class="agent-field-value agent-field-input">
+                    JSON array of 40 signups:
+                    <code class="agent-code"
+                      >[{&quot;email&quot;:&quot;…&quot;,&quot;company&quot;:&quot;…&quot;}]</code
+                    >
+                    · Need: industry, employee band, HQ country.
+                  </p>
+                </section>
+                <section class="agent-card-block" aria-labelledby="agent-l3">
+                  <h3 class="agent-field-label" id="agent-l3">Expected output</h3>
+                  <p class="agent-output-badge">JSON</p>
+                  <p class="agent-field-hint">
+                    Same-length array of objects with added fields
+                    <code class="agent-code">industry</code>,
+                    <code class="agent-code">employee_band</code>,
+                    <code class="agent-code">hq_country</code>, plus
+                    <code class="agent-code">confidence</code> per row.
+                  </p>
+                </section>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

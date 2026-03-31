@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallet | arelis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="workspace-page">
+    <div class="workspace-shell">
+      <aside class="workspace-sidebar" aria-label="Workspace navigation">
+        <div class="workspace-sidebar-brand">
+          <a class="brand" href="index.html">arelis</a>
+          <p class="workspace-sidebar-meta">Workspace</p>
+        </div>
+        <nav class="workspace-nav">
+          <a class="workspace-nav-item" href="workspace.html">Command</a>
+          <a class="workspace-nav-item" href="agents.html">Agents</a>
+          <a class="workspace-nav-item" href="workspace.html#tasks">Tasks</a>
+          <a class="workspace-nav-item is-active" href="wallet.html" aria-current="page">Wallet</a>
+        </nav>
+        <div class="workspace-sidebar-footer">
+          <a class="workspace-home-link" href="index.html">← Back to home</a>
+        </div>
+      </aside>
+      <main class="workspace-main">
+        <h1 class="workspace-main-header">Wallet</h1>
+        <p class="workspace-main-hint">
+          Balances and recent spend on Stellar. Demo figures — connect a wallet when
+          ready.
+        </p>
+
+        <div class="wallet-two-col">
+          <div class="wallet-col-left">
+            <article class="wallet-surface-card" aria-label="Wallet balances">
+              <div class="wallet-card-top">
+                <div class="wallet-card-top-text">
+                  <p class="wallet-card-kicker">Wallet</p>
+                  <p class="wallet-network-pill">Stellar · testnet</p>
+                </div>
+                <button
+                  type="button"
+                  class="wallet-reveal-btn"
+                  id="wallet-reveal-btn"
+                  aria-pressed="false"
+                  aria-label="Hide balances"
+                  title="Show or hide balances"
+                >
+                  <span class="wallet-reveal-icon wallet-reveal-icon--open" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                  <span class="wallet-reveal-icon wallet-reveal-icon--shut hidden" aria-hidden="true">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-3.89-6-7-11-7-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.9 11.9 0 0 0 1 12c1.73 3.89 6 7 11 7 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55A2.95 2.95 0 0 0 9 12c0 1.66 1.34 3 3 3 .35 0 .69-.06 1-.18l1.07 1.07c-.59.34-1.27.11-1.81.11-2.76 0-5-2.24-5-5 0-.79.18-1.53.27-2.2z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              <p class="wallet-balance-primary" id="wallet-display-usdc">512.07 USDC</p>
+              <p class="wallet-balance-xlm" id="wallet-display-xlm">128.4421 XLM</p>
+
+              <div class="wallet-pubkey-block">
+                <p class="wallet-pubkey-label">Public address</p>
+                <div class="wallet-pubkey-row">
+                  <code
+                    class="wallet-pubkey"
+                    id="wallet-pubkey-short"
+                    title="GDRZAG4T6ZAKC42K6KED6PAHOFP6QMLMG3OFUN2H7VFKHOPVIMPFT5LY"
+                  >GDRZAG…FT5LY</code>
+                  <button type="button" class="wallet-copy-btn" id="wallet-copy-pubkey" title="Copy full address">
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <section class="wallet-topup-block wallet-topup-block--inline" aria-labelledby="topup-heading">
+              <h2 id="topup-heading">Top up</h2>
+              <form class="wallet-topup-row" id="wallet-topup-form" action="#" method="post">
+                <label class="visually-hidden" for="topup-amount">Amount</label>
+                <input
+                  class="wallet-input"
+                  id="topup-amount"
+                  name="amount"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Amount"
+                  value="50"
+                />
+                <label class="visually-hidden" for="topup-asset">Asset</label>
+                <select class="wallet-select" id="topup-asset" name="asset">
+                  <option value="USDC">USDC</option>
+                  <option value="XLM">XLM</option>
+                </select>
+                <button type="submit" class="button button-solid">Top up</button>
+              </form>
+            </section>
+          </div>
+
+          <section class="wallet-tx-block" aria-labelledby="tx-heading">
+            <h2 id="tx-heading">Recent transactions</h2>
+            <div class="wallet-usage-table-wrap">
+              <table class="wallet-usage-table wallet-usage-table--simple">
+                <thead>
+                  <tr>
+                    <th>When</th>
+                    <th>What</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Apr 1 · 14:22</td>
+                    <td>Debug agent · task #891</td>
+                    <td class="wallet-amount wallet-amount--out">−0.12 USDC</td>
+                  </tr>
+                  <tr>
+                    <td>Apr 1 · 11:05</td>
+                    <td>Research agent · scrape</td>
+                    <td class="wallet-amount wallet-amount--out">−0.45 USDC</td>
+                  </tr>
+                  <tr>
+                    <td>Mar 31 · 18:40</td>
+                    <td>Network fee</td>
+                    <td class="wallet-amount wallet-amount--out">−0.00001 XLM</td>
+                  </tr>
+                  <tr>
+                    <td>Mar 31 · 09:15</td>
+                    <td>Top up</td>
+                    <td class="wallet-amount wallet-amount--in">+100 USDC</td>
+                  </tr>
+                  <tr>
+                    <td>Mar 30 · 16:02</td>
+                    <td>Report agent · PDF</td>
+                    <td class="wallet-amount wallet-amount--out">−0.08 USDC</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        var DEMO_PUBKEY =
+          "GDRZAG4T6ZAKC42K6KED6PAHOFP6QMLMG3OFUN2H7VFKHOPVIMPFT5LY";
+        var usdcText = "512.07 USDC";
+        var xlmText = "128.4421 XLM";
+        var maskedUsdc = "•••••• USDC";
+        var maskedXlm = "•••••• XLM";
+
+        var usdcEl = document.getElementById("wallet-display-usdc");
+        var xlmEl = document.getElementById("wallet-display-xlm");
+        var revealBtn = document.getElementById("wallet-reveal-btn");
+        var iconOpen = document.querySelector(".wallet-reveal-icon--open");
+        var iconShut = document.querySelector(".wallet-reveal-icon--shut");
+        var balancesHidden = false;
+
+        function syncRevealUi() {
+          usdcEl.textContent = balancesHidden ? maskedUsdc : usdcText;
+          xlmEl.textContent = balancesHidden ? maskedXlm : xlmText;
+          revealBtn.setAttribute("aria-pressed", balancesHidden ? "true" : "false");
+          revealBtn.setAttribute(
+            "aria-label",
+            balancesHidden ? "Show balances" : "Hide balances"
+          );
+          if (iconOpen && iconShut) {
+            iconOpen.classList.toggle("hidden", balancesHidden);
+            iconShut.classList.toggle("hidden", !balancesHidden);
+          }
+        }
+
+        if (revealBtn) {
+          revealBtn.addEventListener("click", function () {
+            balancesHidden = !balancesHidden;
+            syncRevealUi();
+          });
+        }
+
+        var copyBtn = document.getElementById("wallet-copy-pubkey");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", function () {
+            var label = "Copy";
+            function setLabel(t) {
+              copyBtn.textContent = t;
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(DEMO_PUBKEY).then(
+                function () {
+                  setLabel("Copied");
+                  setTimeout(function () {
+                    setLabel(label);
+                  }, 1600);
+                },
+                function () {
+                  setLabel("Failed");
+                  setTimeout(function () {
+                    setLabel(label);
+                  }, 1600);
+                }
+              );
+            } else {
+              setLabel("Copied");
+              setTimeout(function () {
+                setLabel(label);
+              }, 1600);
+            }
+          });
+        }
+
+        var form = document.getElementById("wallet-topup-form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var amount = document.getElementById("topup-amount").value;
+            var asset = document.getElementById("topup-asset").value;
+            alert("Top up (demo): " + amount + " " + asset);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
