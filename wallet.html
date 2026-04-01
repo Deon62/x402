@@ -17,11 +17,11 @@
       <aside class="workspace-sidebar" aria-label="Workspace navigation">
         <div class="workspace-sidebar-brand">
           <a class="brand" href="index.html">arelis</a>
-          <p class="workspace-sidebar-meta">Workspace</p>
+          <p class="workspace-sidebar-meta">Agent Gateway</p>
         </div>
         <nav class="workspace-nav">
           <a class="workspace-nav-item" href="workspace.html">Command</a>
-          <a class="workspace-nav-item" href="agents.html">Agents</a>
+          <a class="workspace-nav-item" href="agents.html">Services</a>
           <a class="workspace-nav-item" href="workspace.html#tasks">Tasks</a>
           <a class="workspace-nav-item is-active" href="wallet.html" aria-current="page">Wallet</a>
         </nav>
@@ -30,10 +30,10 @@
         </div>
       </aside>
       <main class="workspace-main">
-        <h1 class="workspace-main-header">Wallet</h1>
+        <h1 class="workspace-main-header">Agent Wallet</h1>
         <p class="workspace-main-hint">
-          Balances and recent spend on Stellar. Demo figures — connect a wallet when
-          ready.
+          Create and fund payment accounts for agents. Demo figures shown below on
+          Stellar testnet.
         </p>
 
         <div class="wallet-two-col">
@@ -41,7 +41,7 @@
             <article class="wallet-surface-card" aria-label="Wallet balances">
               <div class="wallet-card-top">
                 <div class="wallet-card-top-text">
-                  <p class="wallet-card-kicker">Wallet</p>
+                  <p class="wallet-card-kicker">Agent payment account</p>
                   <p class="wallet-network-pill">Stellar · testnet</p>
                 </div>
                 <button
@@ -75,7 +75,7 @@
               <p class="wallet-balance-xlm" id="wallet-display-xlm">128.4421 XLM</p>
 
               <div class="wallet-pubkey-block">
-                <p class="wallet-pubkey-label">Public address</p>
+                <p class="wallet-pubkey-label">Agent wallet address</p>
                 <div class="wallet-pubkey-row">
                   <code
                     class="wallet-pubkey"
@@ -90,7 +90,7 @@
             </article>
 
             <section class="wallet-topup-block wallet-topup-block--inline" aria-labelledby="topup-heading">
-              <h2 id="topup-heading">Top up</h2>
+              <h2 id="topup-heading">Fund agent wallet</h2>
               <form class="wallet-topup-row" id="wallet-topup-form" action="#" method="post">
                 <label class="visually-hidden" for="topup-amount">Amount</label>
                 <input
@@ -108,7 +108,7 @@
                   <option value="USDC">USDC</option>
                   <option value="XLM">XLM</option>
                 </select>
-                <button type="submit" class="button button-solid">Top up</button>
+                <button type="submit" class="button button-solid">Add funds</button>
               </form>
             </section>
           </div>

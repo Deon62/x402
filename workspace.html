@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Workspace | arelis</title>
+    <title>Agent Gateway | arelis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,11 +17,11 @@
       <aside class="workspace-sidebar" aria-label="Workspace navigation">
         <div class="workspace-sidebar-brand">
           <a class="brand" href="index.html">arelis</a>
-          <p class="workspace-sidebar-meta">Workspace</p>
+          <p class="workspace-sidebar-meta">Agent Gateway</p>
         </div>
         <nav class="workspace-nav">
           <a class="workspace-nav-item is-active" href="#" data-view="command">Command</a>
-          <a class="workspace-nav-item" href="agents.html">Agents</a>
+          <a class="workspace-nav-item" href="agents.html">Services</a>
           <a class="workspace-nav-item" href="#" data-view="tasks">Tasks</a>
           <a class="workspace-nav-item" href="wallet.html">Wallet</a>
         </nav>
@@ -42,7 +42,8 @@
           <div class="command-msg command-msg--assistant">
             <span class="command-msg-role">arelis</span>
             <p class="command-msg-body">
-              Ready. Describe a task or ask to hire an agent from the marketplace.
+              Ready. Describe a task and I will route payment-enabled service calls from
+              your agent wallet.
             </p>
           </div>
           <div class="command-msg command-msg--user">
@@ -53,8 +54,8 @@
           <div class="command-msg command-msg--assistant">
             <span class="command-msg-role">arelis</span>
             <p class="command-msg-body">
-              Queuing a research agent run. Paid calls will show in Tasks and Wallet when
-              complete.
+              Queuing a service run. Usage charges will settle through Wallet and appear
+              in Tasks.
             </p>
           </div>
         </div>
@@ -123,31 +124,31 @@
         };
         const hints = {
           command:
-            "Run marketplace flows and agent hires from a single control surface.",
-          wallet: "Balances, spend limits, and Stellar x402 settlement — coming next.",
+            "Run payment-enabled service flows from a single control surface.",
+          wallet: "Agent wallet balances, policy caps, and Stellar x402 settlement.",
         };
         const tpl = document.getElementById("command-chat-template");
         const commandChatHtml = tpl ? tpl.innerHTML : "";
 
         const panels = {
           wallet:
-            "Wallet placeholder — USDC on Stellar, policy caps, and transaction history.",
+            "Agent wallet — USDC on Stellar, policy caps, and transaction history.",
         };
 
         const tasksPanelHtml =
           '<div class="tasks-panel-inner">' +
-          '<p class="task-table-note">Tasks can be started from this workspace or from your own apps, schedulers, and APIs—agents receive jobs the same way.</p>' +
+          '<p class="task-table-note">Tasks can be started from this workspace or from your own apps, schedulers, and APIs—every listed run is a paid service call.</p>' +
           '<div class="task-table-scroll">' +
           '<table class="task-table">' +
           "<thead><tr><th>Task</th><th>Agent</th><th>Status</th><th>Source</th><th class=\"task-th-spend\">Spend</th></tr></thead><tbody>" +
-          "<tr><td>Summarize Q1 risk factors</td><td>Report agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Command</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Summarize Q1 risk factors</td><td>Report service</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Command</td><td class=\"task-spend\">0.06 USDC</td></tr>" +
           "<tr><td>Fix JWT refresh race in API</td><td>Coding agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">REST API</td><td class=\"task-spend\">0.12 USDC</td></tr>" +
           "<tr><td>Scrape 5 competitor pricing pages</td><td>Research agent</td><td><span class=\"task-status task-status--run\">Running</span></td><td class=\"task-source\">Cron / nightly</td><td class=\"task-spend task-spend--pending\">—</td></tr>" +
-          "<tr><td>Draft investor update email</td><td>Copy agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Mobile link</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
-          "<tr><td>Export brief as PDF</td><td>Report agent</td><td><span class=\"task-status task-status--fail\">Failed</span></td><td class=\"task-source\">SDK (Node)</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
-          "<tr><td>Lint + suggest refactors for checkout module</td><td>Code review agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Webhook</td><td class=\"task-spend task-spend--free\">Free</td></tr>" +
+          "<tr><td>Draft investor update email</td><td>Claude service</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Mobile link</td><td class=\"task-spend\">0.09 USDC</td></tr>" +
+          "<tr><td>Export brief as PDF</td><td>Report service</td><td><span class=\"task-status task-status--fail\">Failed</span></td><td class=\"task-source\">SDK (Node)</td><td class=\"task-spend\">0.03 USDC</td></tr>" +
+          "<tr><td>Lint + suggest refactors for checkout module</td><td>Claude service</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Webhook</td><td class=\"task-spend\">0.11 USDC</td></tr>" +
           "<tr><td>Deep research: EU compliance for launch</td><td>Research agent</td><td><span class=\"task-status task-status--queued\">Queued</span></td><td class=\"task-source\">Partner integration</td><td class=\"task-spend task-spend--pending\">—</td></tr>" +
-          "<tr><td>Enrich 40 signups with firmographics</td><td>Lead enrichment agent</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Batch CSV upload</td><td class=\"task-spend\">2.00 USDC</td></tr>" +
+          "<tr><td>Enrich 40 signups with firmographics</td><td>Data verification service</td><td><span class=\"task-status task-status--done\">Done</span></td><td class=\"task-source\">Batch CSV upload</td><td class=\"task-spend\">2.00 USDC</td></tr>" +
           "</tbody></table></div></div>";
 
         const titleEl = document.getElementById("workspace-title");

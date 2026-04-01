@@ -158,7 +158,10 @@ a {
 }
 
 .hero-grid {
-  display: block;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  align-items: center;
+  gap: 30px;
 }
 
 .hero-copy {
@@ -193,6 +196,17 @@ h1 {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-visual-img {
+  display: block;
+  width: min(100%, 440px);
+  height: auto;
 }
 
 .feature-card,
@@ -561,6 +575,14 @@ h3 {
 
   .hero {
     min-height: calc(100vh - 68px);
+  }
+
+  .hero-visual {
+    justify-content: center;
+  }
+
+  .hero-visual-img {
+    width: min(100%, 380px);
   }
 
   #features.section {
@@ -1333,6 +1355,13 @@ h3 {
   object-fit: contain;
 }
 
+.agent-card-avatar--placeholder {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #4a4a4a;
+  background: #f3f3f3;
+}
+
 .agent-card-head-text {
   min-width: 0;
 }
@@ -1359,6 +1388,13 @@ h3 {
   color: #0f0f0f;
 }
 
+.agent-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+
 .agent-card-price {
   font-size: 0.72rem;
   font-weight: 600;
@@ -1368,6 +1404,21 @@ h3 {
   border: 1px solid #d4bc10;
   white-space: nowrap;
   line-height: 1.2;
+}
+
+.agent-connect-btn {
+  border: 1px solid #d4bc10;
+  background: #fdda24;
+  color: #0f0f0f;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.agent-connect-btn:hover {
+  background: #efcf17;
 }
 
 .agent-card-block {

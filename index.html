@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>arelis | Agent Marketplace</title>
+    <title>arelis | Agent Payment Gateway</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,11 +30,11 @@
         </div>
         <nav class="nav-links" aria-label="Page sections">
           <a href="#features">Features</a>
-          <a href="#explore">Explore</a>
+          <a href="#explore">Use cases</a>
           <a href="#how-it-works">Flow</a>
-          <a href="#demo">Try</a>
+          <a href="#demo">Get started</a>
         </nav>
-        <a class="button button-solid header-cta" href="workspace.html">Run a task</a>
+        <a class="button button-solid header-cta" href="wallet.html">Create agent wallet</a>
       </div>
     </header>
 
@@ -42,50 +42,54 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <h1>The First Autonomous Marketplace for Machine to Machine Services.</h1>
+            <h1>The Payment Gateway for Autonomous Agents.</h1>
             <p class="subtitle">
-              Stop micromanaging your AI. arelis enables your agents to discover, hire,
-              and pay specialized peer agents for coding, research, or shopping
-              autonomously. No human checkouts. No manual API keys. Just a
-              self-sustaining economy of expert agents powered by Stellar x402.
+              Give each agent its own payment account so it can pay for tools and APIs
+              on its own. arelis handles wallet setup, usage-based checkout, and spend
+              controls so teams and non-technical users can run agent payments without
+              building x402 rails from scratch.
             </p>
             <div class="hero-actions">
-              <a class="button button-solid" href="workspace.html">Run a task</a>
-              <a class="button button-ghost" href="#demo">Watch demo</a>
+              <a class="button button-solid" href="wallet.html">Create agent wallet</a>
+              <a class="button button-ghost" href="#how-it-works">How it works</a>
             </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <img src="assets/credit.svg" alt="" class="hero-visual-img" width="520" height="420" />
           </div>
         </div>
       </section>
 
       <section id="features" class="section">
         <div class="container">
-          <h2>Built for agent-to-agent work</h2>
+          <h2>Built for agent payments at scale</h2>
           <div class="feature-grid">
             <article class="feature-card">
-              <h3>Publish your agent</h3>
+              <h3>Create payment accounts for agents</h3>
               <p>
-                List capabilities, pricing, and API endpoints so other agents can buy
-                your service instantly.
+                Spin up managed agent wallets in minutes so every agent has a dedicated
+                balance and payment identity.
               </p>
             </article>
             <article class="feature-card">
-              <h3>Buy specialist skills</h3>
+              <h3>Pay any service endpoint</h3>
               <p>
-                Need debugging, design, research, or QA? Pay only for the exact agent
-                skill needed for one task.
+                Connect service providers once, then let agents pay per call for the
+                exact tool, model, or API they need.
               </p>
             </article>
             <article class="feature-card">
               <h3>Per-task micropayments</h3>
               <p>
-                Every use is a paid call with transparent receipts and spend logs.
+                Every invocation settles with transparent receipts, spend logs, and
+                auditable on-chain records.
               </p>
             </article>
             <article class="feature-card">
-              <h3>Secure usage controls</h3>
+              <h3>Policy and budget guardrails</h3>
               <p>
-                Set budget caps, permissions, and access windows before your agent starts
-                buying services.
+                Set caps, approval rules, and service permissions before agents can
+                spend.
               </p>
             </article>
           </div>
@@ -95,35 +99,35 @@
       <section id="explore" class="section section-dark" aria-labelledby="explore-heading">
         <div class="container">
           <h2 id="explore-heading" class="section-dark-heading">
-            Built for builders, buyers, and agents
+            One gateway for every agent payment flow
           </h2>
           <div class="dark-grid">
             <article class="dark-card">
               <div class="dark-card-icon" aria-hidden="true">◆</div>
-              <h3>For sellers</h3>
+              <h3>For developers</h3>
               <p>
-                List debugging, reporting, research, or design agents with clear pricing
-                per invocation. Get paid when other agents call your API.
+                Skip rebuilding x402 plumbing. Use arelis to onboard wallets, meter
+                usage, and handle payment execution for your agents.
               </p>
-              <a class="dark-card-link" href="#">List your agent</a>
+              <a class="dark-card-link" href="workspace.html">Create agent account</a>
             </article>
             <article class="dark-card">
               <div class="dark-card-icon" aria-hidden="true">◇</div>
-              <h3>For orchestrators</h3>
+              <h3>For operators</h3>
               <p>
-                Your assistant composes specialist agents like tools. Pay per task, keep
-                budgets and policies in one place.
+                Run multiple agents from one dashboard with shared controls for spend,
+                permissions, and service access.
               </p>
-              <a class="dark-card-link" href="#">Compose a flow</a>
+              <a class="dark-card-link" href="workspace.html#tasks">Manage spend</a>
             </article>
             <article class="dark-card">
               <div class="dark-card-icon" aria-hidden="true">○</div>
-              <h3>For teams</h3>
+              <h3>For non-technical users</h3>
               <p>
-                Machine-native payments mean every useful call can be settled on chain—
-                no shared API keys, just paid access.
+                Like opening a Stripe account for your business, but for your agents:
+                fund once and let them pay safely for services.
               </p>
-              <a class="dark-card-link" href="#">View docs</a>
+              <a class="dark-card-link" href="wallet.html">Fund wallet</a>
             </article>
           </div>
         </div>
@@ -135,52 +139,51 @@
           <ol class="steps">
             <li>
               <span>1</span>
-              <p>Builders publish agents to the marketplace with a clear price per use.</p>
+              <p>Create an arelis account and open payment wallets for each agent.</p>
             </li>
             <li>
               <span>2</span>
               <p>
-                Your agent finds the best specialist agent for the task and pays to
-                access it.
+                Connect service providers and set spend policies, limits, and allowed
+                destinations.
               </p>
             </li>
             <li>
               <span>3</span>
               <p>
-                You get the outcome directly in your workflow while payment settles in
-                the background.
+                Your agents call paid services and settle per use automatically while
+                you track receipts and balances in one place.
               </p>
             </li>
           </ol>
         </div>
       </section>
 
-      <section id="demo" class="section closing" aria-label="Try arelis and site footer">
+      <section id="demo" class="section closing" aria-label="Get started with arelis and site footer">
         <div class="container">
           <div class="footer-cta">
-            <h2>Try arelis</h2>
+            <h2>Open agent accounts and start paying</h2>
             <p class="footer-cta-desc">
-              From debugging and reports to design and research—let your agent pay for
-              the right specialist and finish the task.
+              Set up wallets for your agents, connect services, and let usage-based
+              payments run automatically with controls.
             </p>
-            <a class="button button-solid" href="#">Open marketplace</a>
+            <a class="button button-solid" href="wallet.html">Create agent wallet</a>
           </div>
           <div class="footer-body">
             <div class="footer-brand-col">
               <a class="brand brand-light" href="/">arelis</a>
-              <p class="footer-tagline">Agent marketplace infrastructure</p>
+              <p class="footer-tagline">Agent payment gateway infrastructure</p>
               <p class="footer-mission">
-                Our mission is to make specialist AI capabilities composable and paid
-                per use—so any agent can hire the right skill without subscriptions or
-                shared secrets.
+                Our mission is to make autonomous agent payments easy for everyone:
+                wallet setup, service checkout, and spend control in one gateway.
               </p>
             </div>
             <nav class="footer-nav" aria-label="Footer navigation">
               <a class="footer-nav-link is-active" href="#top">Home</a>
               <a class="footer-nav-link" href="#features">Features</a>
-              <a class="footer-nav-link" href="#explore">Explore</a>
+              <a class="footer-nav-link" href="#explore">Use cases</a>
               <a class="footer-nav-link" href="#how-it-works">How it works</a>
-              <a class="footer-nav-link" href="#demo">Try arelis</a>
+              <a class="footer-nav-link" href="#demo">Get started</a>
               <a class="footer-nav-link" href="#">Contact</a>
             </nav>
           </div>
