@@ -640,6 +640,54 @@ h3 {
   border-top: 1px solid #2a2a2a;
 }
 
+.workspace-agent-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.workspace-agent-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #3b3b3b;
+  background: #ffffff;
+  object-fit: contain;
+  padding: 4px;
+}
+
+.workspace-agent-meta {
+  min-width: 0;
+}
+
+.workspace-agent-name {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.workspace-agent-role {
+  margin: 2px 0 0;
+  font-size: 0.74rem;
+  color: #8f8f8f;
+  line-height: 1.2;
+}
+
+.workspace-logout-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #9a9a9a;
+  transition: color 0.15s ease;
+}
+
+.workspace-logout-link:hover {
+  color: #fdda24;
+}
+
 .workspace-home-link {
   font-size: 0.88rem;
   font-weight: 600;
@@ -1564,6 +1612,10 @@ h3 {
 
   .workspace-sidebar-footer {
     padding: 14px 16px 16px;
+  }
+
+  .workspace-agent-role {
+    display: none;
   }
 
   .workspace-nav {
