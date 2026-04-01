@@ -1113,6 +1113,13 @@ h3 {
   cursor: pointer;
 }
 
+.wallet-add-funds-btn {
+  border-radius: 0;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .wallet-tx-block {
   background: #ffffff;
   border: 1px solid var(--line);
@@ -1133,12 +1140,12 @@ h3 {
   padding-right: 0;
 }
 
-.wallet-amount--in {
+.wallet-usage-table td.wallet-amount--in {
   color: #0f7a32;
   font-weight: 600;
 }
 
-.wallet-amount--out {
+.wallet-usage-table td.wallet-amount--out {
   color: #cc5500;
   font-weight: 600;
 }
